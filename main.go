@@ -34,12 +34,13 @@ func main() {
 			Usage:       "global test",
 			EnvVar:      "DINGTALK_TOKEN",
 			Required:    true,
-			Value:       "",
 			Destination: &access_token,
 		},
+
 	}
 
 	app.Commands = []cli.Command {
+		sendCommand,
 		textCommand,
 		linkCommand,
 		markDownCommand,
