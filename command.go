@@ -214,19 +214,19 @@ var feedCardCommand = cli.Command{
 	Action: feedCardAction,
 	Flags: []cli.Flag{
 		cli.StringSliceFlag{
-			Name:     "title",
+			Name:     "title, t",
 			Usage:    "to set content title",
 			EnvVar:   "DINGTALK_TITLE",
 			Required: true,
 		},
 		cli.StringSliceFlag{
-			Name:     "murl",
+			Name:     "murl, m",
 			Usage:    "to set message url",
 			EnvVar:   "DINGTALK_MESSAGEURL",
 			Required: true,
 		},
 		cli.StringSliceFlag{
-			Name:     "purl",
+			Name:     "purl, p",
 			Usage:    "to set picture url",
 			EnvVar:   "DINGTALK_PICTUREURL",
 			Required: true,
