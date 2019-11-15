@@ -79,5 +79,87 @@ $ ./dingtalk --token xxx fc -t "测试" -m "https://www.dingtalk.com/"  -p "http
 ```
 
 ```
-$ ./dingtalk --token xxx  send -f text
+$ ./dingtalk --token xxx send -f text
 ```
+
+### 详细介绍
+命令接收的参数可以通过两种形式注入，Options 和 Env。Options 优先级高于 Env
+
+#### Text 命令
+```
+$ ./dingtalk --token xxx text [options]
+```
+##### Params 
+|option|env|descripe|required|default|
+|-|-|-|-|-|
+|-c, --content|DINGTALK_CONTENT|设置发送内容|false|""|
+|-f, --file|DINGTALK_FILE|从文件中读取发送内容|false|""|
+|-a, --at|DINGTALK_ATMOBILES|@ 钉钉群组的某人, option 形式如 `-a 188xxxx9999` `-a 199xxxx9999`，env 形式如 `DINGTALK_ATMOBILES=188xxxx9999,199xxxx9999`|false|""|
+|--all|DINGTALK_ISATALL|是否 @ 所有人|false|false|
+|-h|查看帮助||false|""|
+>**Tips -c, -f 二者不能都为空**
+
+#### Link 命令
+```
+$ ./dingtalk --token xxx link [options]
+```
+##### Params 
+|options|env|descripe|required|default|
+|-|-|-|-|-|
+|-t, --title|DINGTALK_TITLE|设置标题|true|""|
+|-c, --content|DINGTALK_CONTENT|设置发送内容|false|""|
+|-f, --file|DINGTALK_FILE|从文件中读取发送内容|false|""|
+|-p, --purl|DINGTALK_PICTUREURL|设置图片 url|true|""|
+|-m, --murl|DINGTALK_MESSAGEURL|设置消息 url|true|""|
+>**Tips -c, -f 二者不能都为空**
+
+#### Markdown 命令
+```
+$ ./dingtalk --token xxx md [options]
+```
+##### Params 
+|options|env|descripe|required|default|
+|-|-|-|-|-|
+|-t, --title|DINGTALK_TITLE|设置标题|true|""|
+|-c, --content|DINGTALK_CONTENT|设置发送内容, 可为 markdown 格式|false|""|
+|-f, --file|DINGTALK_FILE|从文件中读取发送内容|false|""|
+|-a, --at|DINGTALK_ATMOBILES|@ 钉钉群组的某人, option 形式如 `-a 188xxxx9999` `-a 199xxxx9999`，env 形式如 `DINGTALK_ATMOBILES=188xxxx9999,199xxxx9999`|false|""|
+|--all|DINGTALK_ISATALL|是否 @ 所有人|false|false|
+
+>**Tips -c, -f 二者不能都为空**
+
+#### ActionCard 命令
+```
+$ ./dingtalk --token xxx ac [options]
+```
+##### Params 
+|options|env|descripe|required|default|
+|-|-|-|-|-|
+|-t, --title|DINGTALK_TITLE|设置标题|true|""|
+|-c, --content|DINGTALK_CONTENT|设置发送内容, 可为 markdown 格式|false|""|
+|-f, --file|DINGTALK_FILE|从文件中读取发送内容|false|""|
+|-a, --avatar|DINGTALK_ISHIDEAVATER|是否隐藏发送者头像, false 为不隐藏, true 为隐藏|false|false|
+|-o, --orientation|DINGTALK_BTORIENTATION|设置按钮排列方式, false 为按钮竖直排列, true 为按钮横向排列|false|false|
+|-m|DINGTALK_ISINDEPENDENT|是否为独立跳转|false|false|
+|--stitle|DINGTALK_BTTITLE|按钮的名称。如果设置了 `-m`，可以设置多个，option 形式如 `--stitle` 感兴趣 `--stitle` 不感兴趣，env 形式如 `DINGTALK_BTTITLE=感兴趣,不感兴趣`。与 `--surl` 成对出现|true|""|
+|--surl|DINGTALK_BTURL|设置点击按钮触发的 URL。如果设置了 `-m`，可以设置多个，option 形式如 `--surl "https://www.baidu.com"` `--surl "https://www.dingtalk.com"`，env 形式如 `DINGTALK_BTURL='"https://www.baidu.com","https://www.dingtalk.com"'`。与 `--stitle` 成对出现|true|""|
+
+>**Tips -c, -f 二者不能都为空**
+
+#### FeedCard 命令
+```
+$ ./dingtalk --token xxx fc [options]
+```
+##### Params 
+|options|env|descripe|required|default|
+|-|-|-|-|-|
+|-t, --title|DINGTALK_TITLE|设置标题|true|""|
+|-p, --purl|DINGTALK_PICTUREURL|设置图片 url|true|""|
+|-m, --murl|DINGTALK_MESSAGEURL|设置消息 url|true|""|
+
+>**Tips 上述三者必须成对出现**
+
+---
+### Todo
+* 增加支持签名校验的安全选项
+* 整合 Docker、Kubernetes
