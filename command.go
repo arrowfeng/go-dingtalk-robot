@@ -96,7 +96,7 @@ var linkCommand = cli.Command{
 		cli.StringFlag{
 			Name:        "purl, p",
 			Usage:       "to set picture of sending",
-			EnvVar:      "DINGTALK_PICURL",
+			EnvVar:      "DINGTALK_PICTUREURL",
 			Required:    true,
 			Destination: &link.picUrl,
 		},
@@ -182,7 +182,7 @@ var actionCardCommand = cli.Command{
 			EnvVar: "DINGTALK_ISHIDEAVATER",
 		},
 		cli.BoolFlag{
-			Name:   "orientation",
+			Name:   "orientation, o",
 			Usage:  "to set button orientation",
 			EnvVar: "DINGTALK_BTORIENTATION",
 		},
